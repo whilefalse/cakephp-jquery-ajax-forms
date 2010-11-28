@@ -1,0 +1,20 @@
+(function($){
+        $('form').ajaxForm({
+                success: function(r, _, _, f){
+                    eval('var json = '+r);
+                    if (json.ok){
+                        alert('ok');
+                    }
+                    else{
+                        $('div.error-message', f).remove();
+                        for (var model in json.invalid){
+                            for (var field in json.invalid[model]){
+                                var name = 'data['+model+']['+field+']';
+                                $('*[name="'+name+'"]').after('<div class="error-message">'+json.invalid[model][field]+'</div>');
+                            }
+                        }
+                    }
+                }
+            });
+}
+    )(jQuery);

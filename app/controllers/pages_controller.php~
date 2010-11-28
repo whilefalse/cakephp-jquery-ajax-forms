@@ -1,0 +1,9 @@
+<?php
+class PagesController extends AppController{
+      public function index(){
+             if ($this->data){
+                 $this->Page->set($this->data);
+                 $this->Page->validates();
+             }
+      }
+}
