@@ -1,34 +1,17 @@
-CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC. Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
+What is this?
 
-The Cake Software Foundation - promoting development related to CakePHP
-http://cakefoundation.org/
+This is a CakePHP component and JQuery plugin to enable you to quickly ajaxify simple CakePHP forms. I've found it a ballache to do this myself every time, so this generifies it a bit.
 
-CakePHP - the rapid development PHP framework
-http://www.cakephp.org
+How do I use it?
 
-Cookbook - user documentation for learning about CakePHP
-http://book.cakephp.org
+- Put the ajax_forms.php component in your components/ directory
+- Put the jquery.cake.form.js file into your webroot/js/ directory
+- If you have a normal form that's working, and you want to ajaxify it, do the following:
+  - add AjaxForms to your controller's components, and add jquery.form.js to your view.
+  - in your javascript, do something like...
+        $('#myform').cakeAjaxForm();
 
-API - quick reference to CakePHP
-http://api.cakephp.org
+How does it work?
 
-The Bakery - everything CakePHP
-http://bakery.cakephp.org
-
-The Show - live and archived podcasts about CakePHP and more
-http://live.cakephp.org
-
-CakePHP Google Group - community mailing list and forum
-http://groups.google.com/group/cake-php
-
-#cakephp on irc.freenode.net - chat with CakePHP developers
-irc://irc.freenode.net/cakephp
-
-CakeForge - open development for CakePHP
-http://cakeforge.org
-
-CakePHP gear
-http://www.cafepress.com/cakefoundation
-
-Recommended Reading
-http://astore.amazon.com/cakesoftwaref-20/
+The jQuery plugin uses the jQuery.form to post off the form. If it gets back any errors, it adds a div with the error-messae class in the relevant place.
+The component checks if the request is both POST and AJAX. If it is, it overrides the rendering - it takes all the models in the $this->data array, and sends back any invalid fields (you should have tried to validate this in your action) as JSON.
