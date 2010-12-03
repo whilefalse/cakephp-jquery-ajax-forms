@@ -12,7 +12,7 @@ class AjaxFormsComponent extends Object{
                 $ok = true;
                 foreach($this->controller->data as $model=>$vals){
                     $this->controller->loadModel($model);
-                    $invalid[$model] = $this->controller->{$model}->invalidFields();
+                    $invalid[$model] = $this->controller->{$model}->validationErrors;
                     if ($invalid[$model]) $ok = false;
                 }
                 $object = compact('ok', 'invalid');
